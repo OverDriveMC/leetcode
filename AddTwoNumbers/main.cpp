@@ -13,7 +13,7 @@ public:
         head->next=NULL;
         ListNode*cur=head;
         int carry=0;
-        //注意进位不为0
+        //娉ㄦ剰杩涗綅涓嶄负0
         while(l1!=NULL || l2!=NULL || carry!=0){
             int sum=carry;
             if(l1!=NULL){
