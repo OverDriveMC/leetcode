@@ -1,14 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
 /**
-Çø¼ädp
-dp[i][j] ±ê¼Ç´Óiµ½jÊÇ·ñÎª»ØÎÄ´®
+åŒºé—´dp
+dp[i][j] æ ‡è®°ä»iåˆ°jæ˜¯å¦ä¸ºå›æ–‡ä¸²
 dp[i][i]=true
 dp[i][i+1]= s[i]==s[i+1] ?true :false
-³¤¶ÈÎª2µÄµ¥¶ÀÌÖÂÛÒòÎªÑ­»·ÖĞ£¬¼ÙÈçlen=2
-ÄÇÃ´dp[i+1][len+i-2]  ½á¹ûÎªdp[i+1][i]ËùÒÔ±ØĞëÒª·Ö¿ªËã
+é•¿åº¦ä¸º2çš„å•ç‹¬è®¨è®ºå› ä¸ºå¾ªç¯ä¸­ï¼Œå‡å¦‚len=2
+é‚£ä¹ˆdp[i+1][len+i-2]  ç»“æœä¸ºdp[i+1][i]æ‰€ä»¥å¿…é¡»è¦åˆ†å¼€ç®—
 dp[i][j]=dp[i+1][j-1] && s[i]==s[j] ? true : false
-Ã¶¾Ù³¤¶È¼´¿É
+æšä¸¾é•¿åº¦å³å¯
 */
 class Solution {
 public:
@@ -21,7 +21,7 @@ public:
         for(int i=0;i<s.length();i++){
             if(i!=(s.length()-1) &&  s[i]==s[i+1]){
                 dp[i][i+1]=1;
-                ///·ÀÖ¹³¤¶ÈÎª2   abb
+                ///é˜²æ­¢é•¿åº¦ä¸º2   abb
                 maxL=2;
                 start=i;
             }
