@@ -1,3 +1,4 @@
+﻿#include<bits/stdc++.h>
 
 using namespace std;
 class Solution {
@@ -10,6 +11,8 @@ public:
             {"","M","MM","MMM"}
         };
         /**
+        *直接每次转换对应的位数即可
+        *千位、百位、十位、个位
         */
         string res;
         res.append(c[3][num/1000%10]);
