@@ -9,7 +9,7 @@ public:
             return -1;
         }
         int demarpos=demarcationPos(nums);
-        //cout<<"·Ö½çµã:"<<demarpos<<endl;
+        //cout<<"åˆ†ç•Œç‚¹:"<<demarpos<<endl;
         if(target<nums[demarpos]){
             return -1;
         }else{
@@ -38,7 +38,7 @@ public:
         return -1;
     }
     /**
-    *ÕÒ³ö·Ö½çµãÎ»ÖÃ,×îÐ¡ÔªËØµÄÎ»ÖÃ
+    *æ‰¾å‡ºåˆ†ç•Œç‚¹ä½ç½®,æœ€å°å…ƒç´ çš„ä½ç½®
     */
     int demarcationPos(const vector<int>& nums){
         int left=0,right=nums.size()-1;
