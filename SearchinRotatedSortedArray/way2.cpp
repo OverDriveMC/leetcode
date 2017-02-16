@@ -40,18 +40,11 @@ public:
 
 int main(){
     vector<int>nums;
-    nums.push_back(4);
-    nums.push_back(5);
-    nums.push_back(6);
-    nums.push_back(7);
-    nums.push_back(0);
+    nums.push_back(3);
     nums.push_back(1);
-    nums.push_back(2);
     Solution s;
-    cout<<s.search(nums,4)<<endl;
-    cout<<s.search(nums,7)<<endl;
+    cout<<s.search(nums,3)<<endl;
+    cout<<s.search(nums,1)<<endl;
     cout<<s.search(nums,0)<<endl;
-    cout<<s.search(nums,2)<<endl;
-    cout<<s.search(nums,8)<<endl;
 	return 0;
 }
