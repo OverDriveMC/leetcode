@@ -13,9 +13,11 @@ public:
         int N=matrix[0].size();
         int r=0,c=0;
         for(int i=0;i<M*N;i++){
+            ///观察可知,当r+c为偶数时,处于上升位置,否则为下降位置
             cout<<r<<"  "<<c<<endl;
             res.push_back(matrix[r][c]);
            // cout<< ((r+c)&1) <<endl;
+            ///上升
             if((r+c)%2 == 0 ){
                 if(c==N-1){
                     r++;
@@ -26,6 +28,8 @@ public:
                     c++;
                 }
             }else{
+                ///当r没有到M-1的时候,当c==0的时候,便需要往下走
+                ///当r到达M-1之后,之后,每次下降都会到达M-1的位置
                 if(r==M-1){
                     c++;
                 }else if(c==0){
