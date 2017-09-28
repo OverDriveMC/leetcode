@@ -43,7 +43,7 @@ public:
 
 */
 
-class Solution {
+class Solution2 {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int>vec;
@@ -87,6 +87,78 @@ public:
     }
 };
 
+
+class Solution3 {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int>vec;
+        if(root==NULL){
+            return vec;
+        }
+
+        stack<TreeNode*>s;
+        TreeNode* cur;  ///当前结点
+        TreeNode* pre=root; ///前一次被访问的结点  [1 2]注意pre一开始不可以为NULL
+        s.push(root);
+        while(!s.empty()  ){
+            cur=s.top();
+
+            if( (cur->left==NULL && cur->right==NULL)
+               || ( pre==cur->right  ) ||
+               (cur->right==NULL && pre==cur->left)
+            ){
+                s.pop();
+                vec.push_back(cur->val);
+                pre=cur;
+            }else{
+                ///右子树先入栈,然后左子树入栈
+                if(cur->right!=NULL){
+                    s.push(cur->right);
+                }
+                if(cur->left!=NULL){
+                    s.push(cur->left);
+                }
+            }
+        }
+
+        return vec;
+    }
+};
+/**
+对于每个节点，都压入两遍，在循环体中，每次弹出一个节点赋给node，如果node仍然等于栈的头结点，说明p的孩子们还没有被操作过,
+应该把它的孩子们加入栈中，否则，访问node。也就是说，第一次弹出，将node的孩子压入栈中，第二次弹出，访问p。
+*/
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int>vec;
+        if(root==NULL){
+            return vec;
+        }
+        stack<TreeNode*>s;
+        s.push(root);
+        s.push(root);
+        TreeNode*node=root;
+        while(!s.empty()){
+            node=s.top();
+            s.pop();
+            if(!s.empty() && node ==s.top()){
+                if(node->right!=NULL){
+                    s.push(node->right);
+                    s.push(node->right);
+                }
+                if(node->left!=NULL){
+                    s.push(node->left);
+                    s.push(node->left);
+                }
+            }else{
+                vec.push_back(node->val);
+            }
+        }
+
+        return vec;
+    }
+};
 
 
 int main()
