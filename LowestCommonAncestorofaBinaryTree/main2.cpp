@@ -20,7 +20,7 @@ public:
         TreeNode* left=lowestCommonAncestor(root->left,p,q);
         TreeNode* right=lowestCommonAncestor(root->right,p,q);
         /**
-         * 假如left==NULL,right==NULL  =>说明是根为LCA
+         * 假如left!=NULL,right!=NULL  =>说明是根为LCA
          * 假如left==NULL,right!=NULL  =>说明right为LCA
          * 假如left!=NULL,right==NULL =>说明left为LCA
          */
