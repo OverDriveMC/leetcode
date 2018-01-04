@@ -5,13 +5,15 @@ using namespace std;
 class Solution {
 public:
 	bool search(const vector<int>& nums, int used,int todo, int*mem,int target){
+		char s[10];
+        itoa(used, s, 2);
+        printf("used:%s  todo:%d\n",s,todo);
 		if(mem[used]==-1){
 			mem[used]=0;
 			///5 1 5 2 5  2 5  1
 			int targ=(todo-1) % target +1;
-			char s[10];
-            itoa(used, s, 2);
-			printf("%s  %d\n",s,targ);
+
+			printf("targ:%d\n",targ);
 			for(int i=0;i<nums.size();i++){
 				if( ((used>>i )& 1)==0 && nums[i]<=targ  ){
 					if(search(nums,used | (1<<i) , todo-nums[i] , mem, target)){
