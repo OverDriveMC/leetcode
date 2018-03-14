@@ -1,6 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+/**
+*剪枝回溯
+*每次只回溯到最近的*
+*/
 class Solution {
 public:
     bool isMatch(string s, string p) {

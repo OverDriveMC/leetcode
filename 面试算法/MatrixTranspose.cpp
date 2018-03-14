@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-const int M=7;
-const int N=5;
+const int M=5;
+const int N=1;
 const int maxn=M*N;
 
 int getNext(int pos){
