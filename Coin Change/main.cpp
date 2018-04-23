@@ -23,7 +23,7 @@ F[i,v]由F[i-1,v]和F[i-1,v-Ci]两个子问题递推而来,
 /**
 完全背包:
 F[i,v]:表示前i种物品恰好放入一个容量为v的背包的最大权值
-F[i,v]=max{F[i-1,v-k * Ci] +kWi  | 0<=kCi <=v  } 
+F[i,v]=max{F[i-1,v-k * Ci] +kWi  | 0<=kCi <=v  }
 01背包按照v递减的次序来循环,让v递减是为了保证第i次循环中的状态F[i,v]是由状态F[i-1,v-Ci]递推而来
 换句话说,这正是为了保证每件物品可选无限件,所以在考虑"加选一件第i种物品"这种策略时,却正需要一个可能已选入
 第i种物品的子结果F[i,v-Ci],所以就可以并且必须采用v递增的顺序循环。
@@ -62,6 +62,13 @@ public:
 int main(){
     Solution s;
     vector<int>coins;
+    coins.push_back(265);
+    coins.push_back(398);
+    coins.push_back(46);
+    coins.push_back(78);
+    coins.push_back(52);
+    cout<<"res:"<<s.coinChange(coins,7754)<<endl;
+    coins.clear();
     coins.push_back(1);
     coins.push_back(2147483647);
     cout<<s.coinChange(coins,2)<<endl;
