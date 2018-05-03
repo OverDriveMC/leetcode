@@ -1,3 +1,10 @@
+/**
+给定一个有序数组,删除重复元素,返回不重复元素数量
+[1 1 2]  =>{1,2}  =2
+pos=0 index=1   ====>pos=0   index=2
+pos=0 index=2   ====>pos=1   swap(nums[1],nums[2])   index=3     
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 class Solution {
@@ -6,6 +13,8 @@ public:
         if(nums.empty()){
             return nums.size();
         }
+		//pos:记录当前元素的最后一个不重复的位置
+		///index即下标,开始往后移动,挨个遍历,将不重复的元素放入到pos所在的位置
         int pos=0,index=1;
         while(index<nums.size()){
             if(nums[pos]<nums[index]){
