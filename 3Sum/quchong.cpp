@@ -1,4 +1,4 @@
-﻿#include<bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 ///-4 -1 -1 0 1 2
 class Solution {
@@ -27,7 +27,7 @@ public:
                 vec.push_back(nums[x]);
                 vec.push_back(nums[y]);
                 vecs.push_back(vec);
-                ///ШЅжи
+                ///去掉重复元素
                 while(x<y && nums[x]==nums[x+1]) x++;
                 while(x<y && nums[y]==nums[y-1]) y--;
                 x++;

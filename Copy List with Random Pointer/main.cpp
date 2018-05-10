@@ -24,6 +24,9 @@ public:
         iter=head;
         while(iter!=NULL){
 			///复制节点的random节点正好也在源节点的random节点后面
+			/**
+			一定要注意random指针可能为NULL,不能直接指向next
+			*/
             if(iter->random!=NULL){
                 iter->next->random=iter->random->next;
             }
