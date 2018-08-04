@@ -8,6 +8,7 @@ class Solution {
         for(int i=0;i<nums.length;i++){
             int start=0;
             if(i>0 && nums[i]==nums[i-1]){
+				//size是上上次的size
                 start=size;
             }
             size=res.size();
@@ -20,3 +21,19 @@ class Solution {
         return res;
     }
 }
+
+/**
+[1,2,2]
+第一轮: 
+	start=0   size=1        []
+	结果:
+	size=1   [[],[1]]
+第二轮:
+	start=0   size=2        [[],[1]]
+	结果:
+	size=2   [[],[1],[2]]
+第三轮:
+	start=2  size=3        [[],[1],[2],[1,2]]
+	结果：
+	size=3   [[],[1],[2],[1,2]    [2,2],[1,2,2]]
+*/

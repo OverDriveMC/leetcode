@@ -8,6 +8,13 @@ public class Main {
 			* i之后说明是降序的,只要将i-1所在的数用右边最小的大于它的数替换下来
 			*然后逆序过来即可。
 			*个位、十位肯定是优先排在前面的位置
+			*例如[1,5,1]   5>1  i=1
+			* swap(nums,0,1) ==> [5,1,1]
+			* 后面的这种情况不用动
+			* [1 1 4  3 2   ]
+			*===> 4 >1    i= 2
+			* ===>swap(nums,1,2)  ==> [1 2 4 3 1]
+			====> [1 2 1 3 4]
 			*/
 			if(nums[i]>nums[i-1]){
 				pos=i;
@@ -36,6 +43,9 @@ public class Main {
 		int mid=begin;
 		while(last>begin+1){
 			mid=begin+(last-begin)/2;
+			/**
+			主要可能出现[1,5,1]这种,必须要保证找到的元素大于target
+			*/
 			if(num[mid]>target){
 				begin=mid;
 			}else if(num[mid]<=target){
