@@ -1,100 +1,55 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-
 class Solution {
 public:
-    /**
-     * @param words: a list of words
-     * @return: a string which is correct order
-     */
     string alienOrder(vector<string> &words) {
-        map<char,set<char> >edges;
-        map<char,int>degree;
-        buildGraph(words, edges,degree);
-        string res=topoSort(words,edges,degree);
-
-        return res;
+		unordered_set<char>ch;
+		set<pair<char,char>>edges;
+		vector<int>indegree(256,0);
+		//保存所有出现过的单词
+		for(auto word : words){
+			ch.insert(word.begin(),word.end());
+		}
+		for(int i=0;i<words.size()-1;i++){
+			string w1=words[i];
+			string w2=words[i+1];
+			int len=min(w1.size(),w2.size());
+			int j=0;
+			for(;j<len;j++){
+				if(w1[j]==w2[j]){
+					continue;
+				}
+				edges.insert(make_pair(w1[j],w2[j]));
+				break;
+			}
+			if(j==len){
+				return "";
+			}
+		}
+		for(auto a:edges){
+			indegree[a.second]++;
+		}
+		//字母大的放在后面,使用greater实现
+		priority_queue<char,vector<char>,greater<char>>q;
+		for(auto a : ch){
+			if(indegree[a]==0){
+				q.push(a);
+			}
+		}
+		stringstream ss;
+		while(!q.empty()){
+			char w=q.top();
+			q.pop();
+			ss<<w;
+			for(auto a : edges){
+				if(a.first==w){
+					indegree[a.second]--;
+					if(indegree[a.second]==0){
+						q.push(a.second);
+					}
+				}
+				
+			}
+		}
+		//假如有字母没有添加进来,说明入度最后也不为0,说明成环
+		return ss.str().size()==ch.size() ? ss.str() :"";
     }
-    string topoSort(vector<string>&words, map<char,set<char> >&edges,map<char,int>&degree){
-        int cnt=degree.size();
-        vector<char>res;
-        while(res.size()<cnt){
-            for(map<char,int>::iterator iter=degree.begin();iter!=degree.end();iter++){
-                if(iter->second==0){
-                    res.push_back(iter->first);
-                    set<char>to=edges[iter->first ];
-                    for(set<char>::iterator iter=to.begin(); iter!=to.end();iter++){
-
-                        degree[*iter]--;
-                    }
-                    degree.erase(iter);
-                    break;
-                }
-            }
-        }
-
-        set<char>charac;
-        for(int i=0;i<words.size();i++){
-            for(int j=0;j<words[i].size();j++){
-                if(find(res.begin(),res.end(),words[i][j])==res.end() )
-                    charac.insert(words[i][j]);
-            }
-        }
-
-        //sort(charac.begin(),charac.end());
-        string tt=string(charac.begin(),charac.end());
-        sort(tt.begin(),tt.end());
-
-        return string(res.begin(),res.end())+tt ;
-    }
-
-    void buildGraph(vector<string>&words, map<char,set<char> >&edges,map<char,int>&degree){
-        set<string>vis;
-        for(int i=0;i<words.size()-1;i++){
-            string w1=words[i];
-            string w2=words[i+1];
-            int length=min(w1.length(),w2.length());
-            for(int j=0;j<length;j++){
-                if(w1[j]==w2[j]){
-                    continue;
-                }
-                vector<char>temp;
-                temp.push_back(w1[j]);
-                temp.push_back(w2[j]);
-                string edge=string(temp.begin(),temp.end());
-                if(vis.find(edge)==vis.end()){
-                    if(degree.find(w1[j])==degree.end()){
-                        degree[w1[j] ]=0;
-                    }
-                    edges[w1[j] ].insert(w2[j]);
-                    degree[w2[j] ]++;
-                }
-                break;
-            }
-        }
-    }
-
 };
-
-int main(){
-    //["wrt","wrf","er","ett","rftt"]
-    vector<string>words;
-    words.push_back("wrt");
-    words.push_back("wrf");
-    words.push_back("er");
-    words.push_back("ett");
-    words.push_back("rftt");
-    Solution s;
-    string res=s.alienOrder(words);
-    cout<<res<<endl;
-
-
-    words.clear();
-    words.push_back("zy");
-    words.push_back("zx");
-
-    res=s.alienOrder(words);
-    cout<<res<<endl;
-    return 0;
-}
