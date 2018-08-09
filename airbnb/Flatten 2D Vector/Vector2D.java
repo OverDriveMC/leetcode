@@ -1,36 +1,37 @@
-class Vector2D implements Iterable<Integer>{
-	private List<List<Integer>>lists;
-	private int xIndex,yIndex;
-	
-	public Vector2D(List<List<Integer>> lists){
-		this.lists=lists;
-		xIndex=0;
-		yIndex=0;
-	}
-	@Override
-	public boolean hasNext(){
-		if(xIndex==lists.size()){
-			return false;
-		}
-		return true;
-	}
-	@Override
-	public Integer getNext(){
-		if(xIndex>=lists.size() || yIndex>=lists.get(xIndex).size()  ){
-			return null;
-		}
-		Integer res=lists.get(xIndex).get(yIndex);
-		yIndex++;
-		if(yIndex==lists.get(xIndex).size() ){
-			xIndex++;
-			yIndex=0;
-		}
-		return res;
-	}
-	@Override
-	public void remove(){
-		
-		
-	}
+public class Vector2D implements Iterator<Integer> {
+	//通过两个迭代器实现
+    Iterator<List<Integer>>i;
+    Iterator<Integer>j;
+    
+    public Vector2D(List<List<Integer>> vec2d) {
+        i=vec2d.iterator();
+        j=null;
+    }
 
+    @Override
+    public Integer next() {
+        Integer res=null;
+        if(hasNext()){
+            res=j.next();
+        }
+        return res;
+    }
+
+    @Override
+    public boolean hasNext() {
+		/**
+		当i还有 next的时候 j==null或者j没有next的时候
+		更新j到i的next的迭代器
+		*/
+        while(  (j==null || !j.hasNext()) && i.hasNext()     ){
+            j=i.next().iterator();
+        }
+		//判断是否到最后一个元素了
+        return j!=null && j.hasNext() ;
+    }
+
+    @Override
+    public void remove() {
+        j.remove();
+    }
 }
