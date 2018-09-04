@@ -3,7 +3,7 @@
 */
 
 /**
-6*(a+b+c) - 3*(2*a+2*b+c) = 4c
+3*(a+b+c) - 3a+3b+c=2c 
 所以只要将a,b越掉即可
 */
 class Solution {
@@ -19,6 +19,6 @@ public:
         for(int i : set){
             sum2+=i;
         }
-        return (6*sum2-2*sum1)/4;
+        return (3*sum2-sum1)/2;
     }
 };

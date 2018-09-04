@@ -4,7 +4,7 @@ public:
         int xors=nums[0];
         vector<int>res(2,0);
 		/**
-		*先计算所有树的 异或  值
+		*先计算所有数的 异或  值
 		* 这样便得到了只出现1次的两个数的异或值xors
 		*/
         for(int i=1;i<nums.size();i++){

@@ -28,6 +28,7 @@ public:
                 return slow;
             }
         }
+		tmp->next=NULL;
         return NULL;
     }
 };
