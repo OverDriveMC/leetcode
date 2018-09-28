@@ -2,7 +2,8 @@
 using namespace std;
 /**
 dp[i][j] :第j天最多执行i笔交易的最大收益
-已经知道第j天最多已经执行i笔交易的最大收益,可以基于第j-1天已经执行i笔交易的最大收益和第j天正好完成第i笔交易的最大收益
+已经知道第j天最多已经执行i笔交易的最大收益,可以基于第j-1天已经执行i笔交易的最大收益
+和第j天正好完成第i笔交易的最大收益
 dp[i][j]=max(dp[i][j-1],  dp[i-1][jj] +prices[j] -prices[jj] ) (jj in range [0,j-1])
         =max(dp[i][j-1], max(dp[i-1][jj] - prices[jj]) + prices[j])
 dp[0][j]: 0 笔交易 利润为 0
